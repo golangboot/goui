@@ -74,6 +74,9 @@ export default {
 			app.component(`ScIcon${icon}`, scIcons[icon])
 		}
 
+		//关闭async-validator全局控制台警告
+		window.ASYNC_VALIDATOR_NO_WARNING = 1
+
 		//全局代码错误捕捉
 		app.config.errorHandler = errorHandler
 	}
