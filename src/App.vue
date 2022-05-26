@@ -14,7 +14,7 @@
 				config: {
 					locale: this.$i18n.messages[this.$i18n.locale].el,
 					size: "default",
-					zIndex: 10,
+					zIndex: 2000,
 					button: {
 						autoInsertSpace: false
 					}
