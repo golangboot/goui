@@ -76,7 +76,7 @@
 			},
 			//表单提交方法
 			async submit(){
-				var valid = await this.$refs.dialogForm.validate().catch(e => {})
+				var valid = await this.$refs.dialogForm.validate().catch(() => {})
 				if(!valid){
 					return false
 				}
