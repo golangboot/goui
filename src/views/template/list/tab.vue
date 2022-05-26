@@ -9,6 +9,9 @@
 				<el-tab-pane label="已完成" name="4"></el-tab-pane>
 			</el-tabs>
 		</el-header>
+		<el-header style="height: auto;">
+			<sc-select-filter :data="filterData" :label-width="80" @on-change="filterChange"></sc-select-filter>
+		</el-header>
 		<el-header>
 			<div class="left-panel">
 				<el-button type="primary" icon="el-icon-plus"></el-button>
@@ -44,11 +47,95 @@
 </template>
 
 <script>
+	import scSelectFilter from '@/components/scSelectFilter'
+
 	export default {
 		name: 'listTab',
+		components: {
+			scSelectFilter
+		},
 		data() {
 			return {
-				groupId: "1",
+				groupId: "0",
+				filterData: [
+					{
+						title: "所属行业",
+						key: "type",
+						multiple: true,
+						options: [
+							{
+								label: "全部",
+								value: ""
+							},
+							{
+								label: "汽车",
+								value: "1"
+							},
+							{
+								label: "大健康",
+								value: "2"
+							},
+							{
+								label: "节能环保",
+								value: "3"
+							},
+							{
+								label: "智能信息",
+								value: "4"
+							},
+							{
+								label: "文化旅游",
+								value: "5"
+							},
+							{
+								label: "新材料",
+								value: "6"
+							},
+							{
+								label: "高端装备",
+								value: "7"
+							},
+							{
+								label: "其他行业",
+								value: "99"
+							}
+						]
+					},
+					{
+						title: "所属区域",
+						key: "area",
+						options: [
+							{
+								label: "全部",
+								value: ""
+							},
+							{
+								label: "华东",
+								value: "HD"
+							},
+							{
+								label: "华北",
+								value: "HB"
+							},
+							{
+								label: "华南",
+								value: "HN"
+							},
+							{
+								label: "华中",
+								value: "HZ"
+							},
+							{
+								label: "华西南",
+								value: "HXN"
+							},
+							{
+								label: "东北",
+								value: "DB"
+							}
+						]
+					}
+				],
 				list: {
 					apiObj: this.$API.demo.list
 				},
@@ -68,6 +155,9 @@
 					groupId: name
 				}
 				this.$refs.table.reload(params)
+			},
+			filterChange(data){
+				this.$refs.table.upData(data)
 			}
 		}
 	}
