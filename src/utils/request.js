@@ -56,7 +56,7 @@ axios.interceptors.response.use(
 			} else {
 				ElNotification.error({
 					title: '请求错误',
-					message: error.response.data.message || `Status:${error.response.status}，未知错误！`
+					message: error.message || `Status:${error.response.status}，未知错误！`
 				});
 			}
 		} else {
