@@ -10,10 +10,10 @@ module.exports = {
 	//开发服务,build后的生产模式还需nginx代理
 	devServer: {
 		open: false, //运行后自动打开浏览器
-		port: 2800, //挂载端口
+		port: process.env.VUE_APP_PORT, //挂载端口
 		proxy: {
 			'/api': {
-				target: 'https://www.fastmock.site/mock/5039c4361c39a7e3252c5b55971f1bd3/api',
+				target: process.env.VUE_APP_API_BASEURL,
 				ws: true,
 				pathRewrite: {
 					'^/api': '/'
