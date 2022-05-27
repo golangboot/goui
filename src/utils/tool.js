@@ -6,12 +6,17 @@
  */
 
 import CryptoJS from 'crypto-js';
+import sysConfig from "@/config";
 
 const tool = {}
 
 /* localStorage */
 tool.data = {
 	set(key, data, datetime = 0) {
+		//加密
+		if(sysConfig.LS_ENCRYPTION == "AES"){
+			data = tool.crypto.AES.encrypt(JSON.stringify(data), sysConfig.LS_ENCRYPTION_key)
+		}
         let cacheValue = {
             content: data,
             datetime: parseInt(datetime) === 0 ? 0 : new Date().getTime() + parseInt(datetime) * 1000
@@ -27,6 +32,10 @@ tool.data = {
                     localStorage.removeItem(key)
                     return null;
                 }
+				//解密
+				if(sysConfig.LS_ENCRYPTION == "AES"){
+					value.content = JSON.parse(tool.crypto.AES.decrypt(value.content, sysConfig.LS_ENCRYPTION_key))
+				}
                 return value.content
             }
             return null

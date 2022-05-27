@@ -48,6 +48,12 @@ const DEFAULT_CONFIG = {
 	//主题颜色
 	COLOR: '',
 
+	//是否加密localStorage, 为空不加密，可填写AES(模式ECB,移位Pkcs7)加密
+	LS_ENCRYPTION: '',
+
+	//localStorageAES加密秘钥，位数建议填写8的倍数
+	LS_ENCRYPTION_key: '2XNN4K8LC0ELVWN4',
+
 	//控制台首页默认布局
 	DEFAULT_GRID: {
 		//默认分栏数量和宽度 例如 [24] [18,6] [8,8,8] [6,12,6]
