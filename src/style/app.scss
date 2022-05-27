@@ -95,3 +95,6 @@ a,button,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);box-sizing: bo
 .main-maximize-exit {display: none;position: fixed;z-index: 3000;top:-20px;left:50%;margin-left: -20px;border-radius: 50%;width: 40px;height: 40px;cursor: pointer;background: rgba(0,0,0,0.2);text-align: center;}
 .main-maximize-exit i {font-size: 14px;margin-top: 22px;color: #fff;}
 .main-maximize-exit:hover {background: rgba(0,0,0,0.4);}
+
+/*定宽页面*/
+.sc-page {width: 1230px;margin: 0 auto;}
