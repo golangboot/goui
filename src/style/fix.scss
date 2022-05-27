@@ -1,4 +1,27 @@
 /* 覆盖element-plus样式 */
+
+:root {
+	--el-color-primary: #409EFF;
+	--el-color-primary-light-1: #53a7ff;
+	--el-color-primary-light-2: #66b1ff;
+	--el-color-primary-light-3: #79bbff;
+	--el-color-primary-light-4: #8cc4ff;
+	--el-color-primary-light-5: #9fceff;
+	--el-color-primary-light-6: #b2d8ff;
+	--el-color-primary-light-7: #c5e1ff;
+	--el-color-primary-light-8: #d8ebff;
+	--el-color-primary-light-9: #ebf5ff;
+	--el-color-primary-dark-1: #398ee5;
+	--el-color-primary-dark-2: #337ecc;
+	--el-color-primary-dark-3: #2c6eb2;
+	--el-color-primary-dark-4: #265e99;
+	--el-color-primary-dark-5: #204f7f;
+	--el-color-primary-dark-6: #193f66;
+	--el-color-primary-dark-7: #132f4c;
+	--el-color-primary-dark-8: #0c1f32;
+	--el-color-primary-dark-9: #060f19;
+}
+
 .el-menu {border: none!important;}
 .el-menu .el-menu-item a {color: inherit;text-decoration: none;display: block;width:100%;height:100%;position: absolute;top:0px;left:0px;}
 .el-form-item-msg {font-size: 12px;color: #999;clear: both;width: 100%;}

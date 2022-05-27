@@ -2,7 +2,13 @@
 
 html.dark {
 	//变量
-	$--el-text-color-primary: #d0d0d0;
+	--el-text-color-primary: #d0d0d0;
+	--el-color-primary-dark-2: var(--el-color-primary-light-2) !important;
+	--el-color-primary-light-9: var(--el-color-primary-dark-8) !important;
+	--el-color-primary-light-8: var(--el-color-primary-dark-7) !important;
+	--el-color-primary-light-7: var(--el-color-primary-dark-6) !important;
+	--el-color-primary-light-5: var(--el-color-primary-dark-4) !important;
+	--el-color-primary-light-3: var(--el-color-primary-dark-3) !important;
 
 	//背景
 	#app {background: var(--el-bg-color);}
