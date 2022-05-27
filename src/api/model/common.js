@@ -23,6 +23,13 @@ export default {
 			return await http.get(this.url, data, config);
 		}
 	},
+	importFile: {
+		url: `${config.API_URL}/fileImport`,
+		name: "导入附件",
+		post: async function(data, config={}){
+			return await http.post(this.url, data, config);
+		}
+	},
 	file: {
 		menu: {
 			url: `${config.API_URL}/file/menu`,

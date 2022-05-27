@@ -2,9 +2,9 @@
 	<el-main>
 		<el-row :gutter="15">
 			<el-col :lg="12">
-				<el-card shadow="never" header="导入">
-					<sc-file-import :apiObj="$API.common.uploadFile" templateUrl="http://www.scuiadmin/file.xlsx" @success="success"></sc-file-import>
-					<sc-file-import :apiObj="$API.common.uploadFile" :data="{otherData:'demo'}" templateUrl="http://www.scuiadmin/file.xlsx" accept=".xls, .xlsx" :maxSize="30" tip="请上传小于或等于 30M 的 .xls, .xlsx 格式文件(自定义TIP)" @success="success">
+				<el-card shadow="never" header="导入(使用mock,有50%几率导入失败)">
+					<sc-file-import :apiObj="$API.common.importFile" templateUrl="http://www.scuiadmin/file.xlsx" @success="success"></sc-file-import>
+					<sc-file-import :apiObj="$API.common.importFile" :data="{otherData:'demo'}" templateUrl="http://www.scuiadmin/file.xlsx" accept=".xls, .xlsx" :maxSize="30" tip="请上传小于或等于 30M 的 .xls, .xlsx 格式文件(自定义TIP)" @success="success">
 						<template #default="{open}">
 							<el-button type="primary" icon="sc-icon-upload" @click="open">导入(全配置)</el-button>
 						</template>
@@ -72,6 +72,23 @@
 			</el-col>
 		</el-row>
 	</el-main>
+
+	<el-dialog v-model="importErrDialogVisible" title="导入失败" :width="680" destroy-on-close @closed="()=>{importErrData={}}">
+		<el-alert :title="`总条目数 ${importErrData.ok} ,其中有 ${importErrData.fail} 条格式不满足导入要求，请修改后再次操作。`" type="error" show-icon :closable="false"/>
+		<div style="margin-top: 15px;">
+			<el-table :data="importErrData.failList" border stripe max-height="270" style="width: 100%">
+				<el-table-column prop="keyName" label="主键名" width="180" />
+				<el-table-column prop="" label="状态" width="100" >
+					<el-tag type="danger"><el-icon><el-icon-circle-close-filled/></el-icon> 失败</el-tag>
+				</el-table-column>
+				<el-table-column prop="reason" label="原因" />
+			</el-table>
+		</div>
+		<template #footer>
+			<el-button type="primary" @click="importErrDialogVisible=false">我知道了</el-button>
+		</template>
+	</el-dialog>
+
 </template>
 
 <script>
@@ -86,6 +103,8 @@
 		},
 		data() {
 			return {
+				importErrDialogVisible: false,
+				importErrData: {},
 				column: [
 					{
 						label: "姓名",
@@ -121,18 +140,16 @@
 		methods: {
 			success(res, close){
 				if(res.code==200){
-					this.$alert(res, "导入成功", {
+					this.$alert("导入返回成功后，可后续操作，比如刷新表格等。执行回调函数close()可关闭上传窗口。", "导入成功", {
 						type: "success",
 						showClose: false,
 						center: true
 					})
 					close()
 				}else{
-					this.$alert(res, "导入失败", {
-						type: "error",
-						showClose: false,
-						center: true
-					})
+					//返回失败后的自定义操作，这里演示显示错误的条目
+					this.importErrDialogVisible = true
+					this.importErrData = res.data
 				}
 
 			}
