@@ -1,10 +1,10 @@
 <!--
  * @Descripttion: 数据表格组件
- * @version: 1.8
+ * @version: 1.9
  * @Author: sakuya
  * @Date: 2021年11月29日21:51:15
  * @LastEditors: sakuya
- * @LastEditTime: 2022年5月21日18:08:46
+ * @LastEditTime: 2022年5月28日20:23:31
 -->
 
 <template>
@@ -209,7 +209,7 @@
 					this.summary = response.summary || {};
 					this.loading = false;
 				}
-				this.$refs.scTable.$el.querySelector('.el-table__body-wrapper').scrollTop = 0
+				this.$refs.scTable.setScrollTop(0)
 				this.$emit('dataChange', res, this.tableData)
 			},
 			//分页点击
