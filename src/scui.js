@@ -5,6 +5,7 @@ import http from "./utils/request"
 import { permission, rolePermission } from './utils/permission'
 
 import scTable from './components/scTable'
+import scTableColumn from './components/scTable/column.js'
 import scFilterBar from './components/scFilterBar'
 import scUpload from './components/scUpload'
 import scUploadMultiple from './components/scUpload/multiple'
@@ -43,6 +44,7 @@ export default {
 
 		//注册全局组件
 		app.component('scTable', scTable);
+		app.component('scTableColumn', scTableColumn);
 		app.component('scFilterBar', scFilterBar);
 		app.component('scUpload', scUpload);
 		app.component('scUploadMultiple', scUploadMultiple);
