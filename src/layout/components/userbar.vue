@@ -50,7 +50,7 @@
 			</div>
 			<template #dropdown>
 				<el-dropdown-menu>
-					<el-dropdown-item command="uc">个人设置</el-dropdown-item>
+					<el-dropdown-item command="uc">帐号信息</el-dropdown-item>
 					<el-dropdown-item command="clearCache">清除缓存</el-dropdown-item>
 					<el-dropdown-item divided command="outLogin">退出登录</el-dropdown-item>
 				</el-dropdown-menu>
