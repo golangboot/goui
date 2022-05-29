@@ -34,6 +34,7 @@
 			var menuTree = this.$TOOL.data.get("MENU")
 			this.filterMenu(menuTree)
 			this.$refs.input.focus()
+			console.log(this.menu)
 		},
 		methods: {
 			inputChange(value){
@@ -51,7 +52,7 @@
 					if(item.meta.type=='iframe'){
 						item.path = `/i/${item.name}`
 					}
-					if(item.children&&item.children.length > 0){
+					if(item.children&&item.children.length > 0&&!item.component){
 						this.filterMenu(item.children)
 					}else{
 						this.menu.push(item)
@@ -62,10 +63,10 @@
 				var res = []
 				//过滤菜单树
 				var filterMenu = this.menu.filter((item) => {
-					if(item.meta.title.indexOf(queryString.toLowerCase()) >= 0){
+					if((item.meta.title).toLowerCase().indexOf(queryString.toLowerCase()) >= 0){
 						return true
 					}
-					if(item.name.indexOf(queryString.toLowerCase()) >= 0){
+					if((item.name).toLowerCase().indexOf(queryString.toLowerCase()) >= 0){
 						return true
 					}
 				})
