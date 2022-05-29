@@ -1,4 +1,6 @@
-module.exports = {
+const { defineConfig } = require('@vue/cli-service')
+
+module.exports = defineConfig({
 	//设置为空打包后不分更目录还是多级目录
 	publicPath:'',
 	//build编译后存放静态文件的目录
@@ -29,16 +31,16 @@ module.exports = {
 		config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
 	},
 
-	configureWebpack: config => {
+	configureWebpack: {
 		//性能提示
-		config.performance = {
+		performance: {
 			hints: false
-		}
-		config.optimization = {
+		},
+		optimization: {
 			splitChunks: {
 				chunks: "all",
 				automaticNameDelimiter: '~',
-				name: true,
+				name: "scuiChunks",
 				cacheGroups: {
 					//第三方库抽离
 					vendor: {
@@ -70,5 +72,4 @@ module.exports = {
 			}
 		}
 	}
-
-}
+})
