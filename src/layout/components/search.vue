@@ -34,7 +34,6 @@
 			var menuTree = this.$TOOL.data.get("MENU")
 			this.filterMenu(menuTree)
 			this.$refs.input.focus()
-			console.log(this.menu)
 		},
 		methods: {
 			inputChange(value){
