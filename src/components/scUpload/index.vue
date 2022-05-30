@@ -193,13 +193,20 @@
 				this.$refs.uploader.handleStart(file)
 			},
 			success(res, file){
-				var response = config.parseData(res)
-				file.url = response.src
-				this.value = file.url
-
 				//释放内存删除blob
 				URL.revokeObjectURL(file.tempFile)
 				delete file.tempFile
+				var os = this.onSuccess(res, file)
+				if(os!=undefined && os==false){
+					this.$nextTick(() => {
+						this.file = null
+						this.value = ""
+					})
+					return false
+				}
+				var response = config.parseData(res)
+				file.url = response.src
+				this.value = file.url
 			},
 			error(err){
 				this.$nextTick(()=>{

@@ -109,7 +109,7 @@
 					type: "success"
 				})
 				console.log(response);
-				return true;
+				return false;
 			},
 			submitForm(){
 				this.$refs.ruleForm.validate((valid) => {
