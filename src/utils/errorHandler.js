@@ -4,7 +4,6 @@
  */
 
 export default (error, vm)=>{
-	console.log(error)
 	//过滤HTTP请求错误
 	if(error.status || error.status==0){
 		return false
