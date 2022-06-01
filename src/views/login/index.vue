@@ -42,64 +42,44 @@
 						<img :alt="$CONFIG.APP_NAME" src="img/logo.png">
 						<label>{{$CONFIG.APP_NAME}}</label>
 					</div>
-					<h2>{{ $t('login.signInTitle') }}</h2>
 				</div>
-				<el-form ref="loginForm" :model="ruleForm" :rules="rules" label-width="0" size="large">
-					<el-form-item prop="user">
-						<el-input v-model="ruleForm.user" prefix-icon="el-icon-user" clearable :placeholder="$t('login.userPlaceholder')">
-							<template #append>
-								<el-select v-model="userType" style="width: 130px;">
-									<el-option :label="$t('login.admin')" value="admin"></el-option>
-									<el-option :label="$t('login.user')" value="user"></el-option>
-								</el-select>
-							</template>
-						</el-input>
-					</el-form-item>
-					<el-form-item prop="password">
-						<el-input v-model="ruleForm.password" prefix-icon="el-icon-lock" clearable show-password :placeholder="$t('login.PWPlaceholder')"></el-input>
-					</el-form-item>
-					<el-form-item style="margin-bottom: 10px;">
-							<el-col :span="12">
-								<el-checkbox :label="$t('login.rememberMe')" v-model="ruleForm.autologin"></el-checkbox>
-							</el-col>
-							<el-col :span="12" style="text-align: right;">
-								<el-link type="primary" :underline="false">{{ $t('login.forgetPassword') }}？</el-link>
-							</el-col>
-					</el-form-item>
-					<el-form-item>
-						<el-button type="primary" style="width: 100%;" :loading="islogin" round @click="login">{{ $t('login.signIn') }}</el-button>
-					</el-form-item>
-				</el-form>
-
+				<el-tabs>
+					<el-tab-pane :label="$t('login.accountLogin')" lazy>
+						<password-form></password-form>
+					</el-tab-pane>
+					<el-tab-pane :label="$t('login.mobileLogin')" lazy>
+						<phone-form></phone-form>
+					</el-tab-pane>
+				</el-tabs>
 				<el-divider>{{ $t('login.signInOther') }}</el-divider>
-
 				<div class="login-oauth">
-					<el-button size="small" type="success" icon="sc-icon-wechat" circle></el-button>
+					<el-button type="success" icon="sc-icon-wechat" circle @click="wechatLogin"></el-button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<el-dialog v-model="showWechatLogin" :title="$t('login.wechatLoginTitle')" :width="400" destroy-on-close>
+		<div class="qrCodeLogin">
+			<sc-qr-code class="qrCode" :text="WechatLoginCode" :size="200"></sc-qr-code>
+			<p class="msg">{{$tc('login.wechatLoginMsg', 1)}}<br/>{{$tc('login.wechatLoginMsg', 2)}}</p>
+			<div class="qrCodeLogin-result" v-if="isWechatLoginResult">
+				<el-result icon="success" :title="$tc('login.wechatLoginResult', 1)" :sub-title="$tc('login.wechatLoginResult', 2)"></el-result>
+			</div>
+		</div>
+	</el-dialog>
 </template>
 
 <script>
+	import passwordForm from './components/passwordForm'
+	import phoneForm from './components/phoneForm'
+
 	export default {
+		components: {
+			passwordForm,
+			phoneForm
+		},
 		data() {
 			return {
-				userType: 'admin',
-				ruleForm: {
-					user: "admin",
-					password: "admin",
-					autologin: false
-				},
-				rules: {
-					user: [
-						{required: true, message: this.$t('login.userError'), trigger: 'blur'}
-					],
-					password: [
-						{required: true, message: this.$t('login.PWError'), trigger: 'blur'}
-					]
-				},
-				islogin: false,
 				config: {
 					lang: this.$TOOL.data.get('APP_LANG') || this.$CONFIG.LANG,
 					dark: this.$TOOL.data.get('APP_DARK') || false
@@ -117,19 +97,13 @@
 						name: '日本語',
 						value: 'ja',
 					}
-				]
+				],
+				WechatLoginCode: "",
+				showWechatLogin: false,
+				isWechatLoginResult: false
 			}
 		},
 		watch:{
-			userType(val){
-				if(val == 'admin'){
-					this.ruleForm.user = 'admin'
-					this.ruleForm.password = 'admin'
-				}else if(val == 'user'){
-					this.ruleForm.user = 'user'
-					this.ruleForm.password = 'user'
-				}
-			},
 			'config.dark'(val){
 				if(val){
 					document.documentElement.classList.add("dark")
@@ -156,63 +130,19 @@
 			console.log('%c SCUI %c Gitee: https://gitee.com/lolicode/scui', 'background:#666;color:#fff;border-radius:3px;', '')
 		},
 		methods: {
-			async login(){
-
-				var validate = await this.$refs.loginForm.validate().catch(()=>{})
-				if(!validate){ return false }
-
-				this.islogin = true
-				var data = {
-					username: this.ruleForm.user,
-					password: this.$TOOL.crypto.MD5(this.ruleForm.password)
-				}
-				//获取token
-				var user = await this.$API.auth.token.post(data)
-				if(user.code == 200){
-					this.$TOOL.cookie.set("TOKEN", user.data.token, {
-						expires: this.ruleForm.autologin? 24*60*60 : 0
-					})
-					this.$TOOL.data.set("USER_INFO", user.data.userInfo)
-				}else{
-					this.islogin = false
-					this.$message.warning(user.message)
-					return false
-				}
-				//获取菜单
-				var menu = null
-				if(this.ruleForm.user == 'admin'){
-					menu = await this.$API.system.menu.myMenus.get()
-				}else{
-					menu = await this.$API.demo.menu.get()
-				}
-				if(menu.code == 200){
-					if(menu.data.menu.length==0){
-						this.islogin = false
-						this.$alert("当前用户无任何菜单权限，请联系系统管理员", "无权限访问", {
-							type: 'error',
-							center: true
-						})
-						return false
-					}
-					this.$TOOL.data.set("MENU", menu.data.menu)
-					this.$TOOL.data.set("PERMISSIONS", menu.data.permissions)
-				}else{
-					this.islogin = false
-					this.$message.warning(menu.message)
-					return false
-				}
-
-				this.$router.replace({
-					path: '/'
-				})
-				this.$message.success("Login Success 登录成功")
-				this.islogin = false
-			},
 			configDark(){
 				this.config.dark = this.config.dark ? false : true
 			},
 			configLang(command){
 				this.config.lang = command.value
+			},
+			wechatLogin(){
+				this.showWechatLogin = true
+				this.WechatLoginCode = "SCUI-823677237287236-" + new Date().getTime()
+				this.isWechatLoginResult = false
+				setTimeout(()=>{
+					this.isWechatLoginResult = true
+				},3000)
 			}
 		}
 	}
@@ -234,22 +164,40 @@
 
 	.login_main {flex: 1;overflow: auto;display:flex;}
 	.login-form {width: 400px;margin: auto;padding:20px 0;}
-	.login-header {margin-bottom: 20px;}
+	.login-header {margin-bottom: 40px;}
 	.login-header .logo {display: flex;align-items: center;}
-	.login-header .logo img {width: 35px;height: 35px;vertical-align: bottom;margin-right: 10px;}
-	.login-header .logo label {font-size: 24px;}
-	.login-header h2 {font-size: 24px;font-weight: bold;margin-top: 50px;}
+	.login-header .logo img {width: 40px;height: 40px;vertical-align: bottom;margin-right: 10px;}
+	.login-header .logo label {font-size: 26px;font-weight: bold;}
 	.login-oauth {display: flex;justify-content:space-around;}
 	.login-form .el-divider {margin-top:40px;}
 
+	.login-form {}
+	.login-form:deep(.el-tabs) .el-tabs__header {margin-bottom: 25px;}
+	.login-form:deep(.el-tabs) .el-tabs__header .el-tabs__item {font-size: 14px;}
+
+	.login-form:deep(.login-forgot) {text-align: right;}
+	.login-form:deep(.login-forgot) a {color: var(--el-color-primary);}
+	.login-form:deep(.login-forgot) a:hover {color: var(--el-color-primary-light-3);}
+	.login-form:deep(.login-reg) {font-size: 14px;color: var(--el-text-color-primary);}
+	.login-form:deep(.login-reg) a {color: var(--el-color-primary);}
+	.login-form:deep(.login-reg) a:hover {color: var(--el-color-primary-light-3);}
+
 	.login_config {position: absolute;top:20px;right: 20px;}
-	.el-dropdown-menu__item.selected {color: var(--el-color-primary);}
+
+	.login-form:deep(.login-msg-yzm) {display: flex;width: 100%;}
+	.login-form:deep(.login-msg-yzm) .el-button {margin-left: 10px;--el-button-size:42px;}
+
+	.qrCodeLogin {text-align: center;position: relative;padding: 20px 0;}
+	.qrCodeLogin img.qrCode {background: #fff;padding:20px;border-radius:10px;}
+	.qrCodeLogin p.msg {margin-top: 15px;}
+	.qrCodeLogin .qrCodeLogin-result {position: absolute;top:0;left:0;right: 0;bottom: 0;text-align: center;background: var(--el-mask-color);}
 
 	@media (max-width: 1200px){
 		.login-form {width: 340px;}
 	}
 	@media (max-width: 1000px){
 		.login_main {display: block;}
+		.login_main .login_config {position: static;padding:20px 20px 0 20px;text-align: right;}
 		.login-form {width:100%;padding:20px 40px;}
 		.login_adv {display: none;}
 	}

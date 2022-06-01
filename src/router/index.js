@@ -48,6 +48,11 @@ router.beforeEach(async (to, from, next) => {
 		return false;
 	}
 
+	if(routes.findIndex(r => r.path === to.path) >= 0){
+		next();
+		return false;
+	}
+
 	if(!token){
 		next({
 			path: '/login'

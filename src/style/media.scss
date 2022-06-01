@@ -43,4 +43,8 @@
 	.adminui-main > .el-container > .el-container > .el-header .right-panel {display: block;margin-top: 15px;}
 
 	.sc-page {width: 100%;margin: 0;}
+	
+	.common-main .el-form {width: 100% !important;}
+	.common-header-logo label {display: none;}
+	.common-header-title {display: none;}
 }
