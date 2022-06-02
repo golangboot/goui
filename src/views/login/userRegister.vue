@@ -12,6 +12,7 @@
 			</el-form-item>
 			<el-form-item label="登录密码" prop="password">
 				<el-input v-model="form.password" type="password" show-password placeholder="请输入登录密码"></el-input>
+				<sc-password-strength v-model="form.password"></sc-password-strength>
 				<div class="el-form-item-msg">请输入包含英文、数字的8位以上密码</div>
 			</el-form-item>
 			<el-form-item label="确认密码" prop="password2">
@@ -65,11 +66,13 @@
 </template>
 
 <script>
+	import scPasswordStrength from '@/components/scPasswordStrength';
 	import commonPage from './components/commonPage'
 
 	export default {
 		components: {
-			commonPage
+			commonPage,
+			scPasswordStrength
 		},
 		data() {
 			return {
