@@ -92,10 +92,6 @@
 					{
 						name: 'English',
 						value: 'en',
-					},
-					{
-						name: '日本語',
-						value: 'ja',
 					}
 				],
 				WechatLoginCode: "",
