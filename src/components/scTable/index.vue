@@ -1,10 +1,10 @@
 <!--
  * @Descripttion: 数据表格组件
- * @version: 1.9
+ * @version: 1.10
  * @Author: sakuya
  * @Date: 2021年11月29日21:51:15
  * @LastEditors: sakuya
- * @LastEditTime: 2022年5月28日20:23:31
+ * @LastEditTime: 2022年6月4日17:35:26
 -->
 
 <template>
@@ -398,4 +398,6 @@
 	.scTable-page {height:50px;display: flex;align-items: center;justify-content: space-between;padding:0 15px;}
 	.scTable-do {white-space: nowrap;}
 	.scTable:deep(.el-table__footer) .cell {font-weight: bold;}
+	.scTable:deep(.el-table__body-wrapper) .el-scrollbar__bar.is-horizontal {height: 12px;border-radius: 12px;}
+	.scTable:deep(.el-table__body-wrapper) .el-scrollbar__bar.is-vertical {width: 12px;border-radius: 12px;}
 </style>
