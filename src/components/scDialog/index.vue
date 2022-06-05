@@ -10,8 +10,8 @@
 <template>
 	<div class="sc-dialog" ref="scDialog">
 	<el-dialog ref="dialog" v-model="dialogVisible" :fullscreen="isFullscreen" v-bind="$attrs" :show-close="false">
-		<template #title>
-			<slot name="title">
+		<template #header>
+			<slot name="header">
 				<span class="el-dialog__title">{{ title }}</span>
 			</slot>
 			<div class="sc-dialog__headerbtn">
