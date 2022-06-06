@@ -18,7 +18,7 @@
 		</el-card>
 		<div style="height:15px"></div>
 		<el-card shadow="never" header="多选">
-			<sc-table-select v-model="value" :apiObj="apiObj" :table-width="700" multiple :props="props" @change="change">
+			<sc-table-select v-model="value" :apiObj="apiObj" :table-width="700" multiple clearable collapse-tags collapse-tags-tooltip :props="props" @change="change">
 				<template #header="{form, submit}">
 					<el-form :inline="true" :model="form">
 						<el-form-item>
