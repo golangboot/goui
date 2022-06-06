@@ -13,7 +13,7 @@
 		<el-card shadow="never">
 			<el-form ref="ruleForm" :model="form" :rules="rules" label-width="100px">
 				<el-form-item label="图标" prop="icon">
-					<sc-icon-select v-model="form.icon" clearable :disabled="disabled"></sc-icon-select>
+					<sc-icon-select v-model="form.icon" :disabled="disabled"></sc-icon-select>
 				</el-form-item>
 				<el-form-item>
 					<el-button type="primary" @click="submitForm">保存</el-button>
