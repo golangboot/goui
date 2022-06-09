@@ -35,7 +35,7 @@
 					<el-tab-pane label="列设置" v-if="columnData.length>0" lazy>
 						<columnSet :column="columnData"></columnSet>
 					</el-tab-pane>
-					<el-tab-pane label="其他参数" v-if="data" lazy>
+					<el-tab-pane label="其他参数" v-if="data && showData" lazy>
 						<el-descriptions :column="1" border size="small">
 							<el-descriptions-item v-for=" (val, key) in data" :key="key" :label="key">{{val}}</el-descriptions-item>
 						</el-descriptions>
@@ -59,6 +59,7 @@
 			fileName: { type: String, default: "" },
 			fileTypes: { type: Array, default: () => ['xlsx'] },
 			data: { type: Object, default: () => {} },
+			showData: { type: Boolean, default: false },
 			column: { type: Array, default: () => [] },
 			blob: { type: Boolean, default: false },
 			progress: { type: Boolean, default: true }

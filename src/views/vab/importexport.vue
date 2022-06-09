@@ -40,7 +40,7 @@
 			<el-col :lg="12">
 				<el-card shadow="never" header="导出">
 					<sc-file-export :apiObj="$API.common.exportFile"></sc-file-export>
-					<sc-file-export :apiObj="$API.common.exportFile" blob fileName="人员列表" :data="{otherData:'demo'}" :column="column" :fileTypes="['xlsx','docx','pdf']">
+					<sc-file-export :apiObj="$API.common.exportFile" blob fileName="人员列表" :data="{otherData:'demo'}" showData :column="column" :fileTypes="['xlsx','docx','pdf']">
 						<template #default="{open}">
 							<el-button type="primary" icon="sc-icon-download" @click="open">导出(blob文件流)</el-button>
 						</template>
@@ -59,6 +59,7 @@
 					<el-descriptions :column="1" border size="small" style="margin-top: 15px;">
 						<el-descriptions-item label="apiObj" :width="200">Object 文件导出接口对象，通过apiObj.url请求文件</el-descriptions-item>
 						<el-descriptions-item label="data">Object 上传时附带的额外参数(可为数据表格的过滤项)</el-descriptions-item>
+						<el-descriptions-item label="showData">Boolean 是否显示附带的额外参数</el-descriptions-item>
 						<el-descriptions-item label="fileName">String 下载文件名称，默认为当前时间戳</el-descriptions-item>
 						<el-descriptions-item label="fileTypes">Array 可选择文件类型，默认为['xlsx']，组件将数组第一项当做已选项</el-descriptions-item>
 						<el-descriptions-item label="column">Array 列配置，请求文件时将添加column为key的参数，值为prop逗号","分割的字符串</el-descriptions-item>
