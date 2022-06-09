@@ -45,6 +45,7 @@
 			account: defineAsyncComponent(() => import('./user/account')),
 			seting: defineAsyncComponent(() => import('./user/seting')),
 			pushSettings: defineAsyncComponent(() => import('./user/pushSettings')),
+			password: defineAsyncComponent(() => import('./user/password')),
 			space: defineAsyncComponent(() => import('./user/space')),
 			logs: defineAsyncComponent(() => import('./user/logs')),
 			upToEnterprise: defineAsyncComponent(() => import('./user/upToEnterprise'))
@@ -64,6 +65,11 @@
 								icon: "el-icon-operation",
 								title: "个人设置",
 								component: "seting"
+							},
+							{
+								icon: "el-icon-lock",
+								title: "密码",
+								component: "password"
 							},
 							{
 								icon: "el-icon-bell",
