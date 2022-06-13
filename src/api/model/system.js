@@ -101,5 +101,14 @@ export default {
 				return await http.get(this.url, params);
 			}
 		}
+	},
+	tasks: {
+		list: {
+			url: `${config.API_URL}/system/tasks/list`,
+			name: "系统任务管理",
+			get: async function(params){
+				return await http.get(this.url, params);
+			}
+		}
 	}
 }

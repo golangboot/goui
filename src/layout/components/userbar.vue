@@ -6,6 +6,9 @@
 		<div class="screen panel-item hidden-sm-and-down" @click="screen">
 			<el-icon><el-icon-full-screen /></el-icon>
 		</div>
+		<div class="tasks panel-item" @click="tasks">
+			<el-icon><el-icon-sort /></el-icon>
+		</div>
 		<div class="msg panel-item" @click="showMsg">
 			<el-badge :hidden="msgList.length==0" :value="msgList.length" class="badge" type="danger">
 				<el-icon><el-icon-chat-dot-round /></el-icon>
@@ -62,20 +65,27 @@
 		<search @success="searchVisible=false"></search>
 	</el-dialog>
 
+	<el-drawer v-model="tasksVisible" :size="550"  title="任务中心" destroy-on-close>
+		<tasks></tasks>
+	</el-drawer>
+
 </template>
 
 <script>
-	import search from './search.vue';
+	import search from './search.vue'
+	import tasks from './tasks.vue'
 
 	export default {
 		components: {
-			search
+			search,
+			tasks
 		},
 		data(){
 			return {
 				userName: "",
 				userNameF: "",
 				searchVisible: false,
+				tasksVisible: false,
 				msg: false,
 				msgList: [
 					{
@@ -165,6 +175,10 @@
 			//搜索
 			search(){
 				this.searchVisible = true
+			},
+			//任务
+			tasks(){
+				this.tasksVisible = true
 			}
 		}
 	}
