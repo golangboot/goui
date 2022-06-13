@@ -30,7 +30,8 @@
 							</el-form-item>
 							<slot name="form" :formData="formData"></slot>
 						</el-form>
-						<el-button type="primary" size="large" icon="el-icon-download" style="width: 100%;" @click="download">下 载</el-button>
+						<el-button v-if="async" type="primary" size="large" icon="el-icon-plus" style="width: 100%;" @click="download" :loading="asyncLoading">发起导出任务</el-button>
+						<el-button v-else type="primary" size="large" icon="el-icon-download" style="width: 100%;" @click="download">下 载</el-button>
 					</el-tab-pane>
 					<el-tab-pane label="列设置" v-if="columnData.length>0" lazy>
 						<columnSet :column="columnData"></columnSet>
@@ -60,6 +61,7 @@
 			fileTypes: { type: Array, default: () => ['xlsx'] },
 			data: { type: Object, default: () => {} },
 			showData: { type: Boolean, default: false },
+			async: { type: Boolean, default: false },
 			column: { type: Array, default: () => [] },
 			blob: { type: Boolean, default: false },
 			progress: { type: Boolean, default: true }
@@ -73,7 +75,8 @@
 				},
 				columnData: [],
 				downLoading: false,
-				downLoadProgress: 0
+				downLoadProgress: 0,
+				asyncLoading: false
 			}
 		},
 		watch:{
@@ -105,7 +108,9 @@
 					column: this.columnData.filter(n => !n.hide).map(n => n.prop).join(",")
 				}
 				let assignData = {...this.data, ...this.formData, ...columnArr}
-				if(this.blob){
+				if(this.async){
+					this.asyncDownload(this.apiObj, this.formData.fileName, assignData)
+				}else if(this.blob){
 					this.downloadFile(this.apiObj, this.formData.fileName, assignData)
 				}else{
 					this.linkFile(this.apiObj.url, this.formData.fileName, assignData)
@@ -151,6 +156,30 @@
 						title: '下载文件失败',
 						message: err
 					})
+				})
+			},
+			asyncDownload(apiObj, fileName, data={}){
+				this.asyncLoading = true
+				apiObj.get(data).then(res => {
+					this.asyncLoading = false
+					if(res.code == 200){
+						this.dialog = false
+						this.$msgbox({
+							title: "成功发起任务",
+							message: `<div><img style="height:200px" src="img/tasks-example.png"/></div><p>已成功发起导出任务，您可以操作其他事务</p><p>稍后可在 <b>任务中心</b> 查看执行结果</p>`,
+							type: "success",
+							confirmButtonText: "知道了",
+							dangerouslyUseHTMLString: true,
+							center: true
+						}).catch(() => {})
+					}else{
+						this.$alert(res.message || "未知错误", "发起任务失败", {
+							type: "error",
+							center: true
+						}).catch(() => {})
+					}
+				}).catch(() => {
+					this.asyncLoading = false
 				})
 			},
 			toQueryString(obj){
