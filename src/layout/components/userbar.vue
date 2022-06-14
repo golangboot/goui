@@ -65,7 +65,7 @@
 		<search @success="searchVisible=false"></search>
 	</el-dialog>
 
-	<el-drawer v-model="tasksVisible" :size="550"  title="任务中心" destroy-on-close>
+	<el-drawer v-model="tasksVisible" :size="450"  title="任务中心" custom-class="drawerBG" destroy-on-close>
 		<tasks></tasks>
 	</el-drawer>
 
