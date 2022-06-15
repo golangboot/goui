@@ -6,6 +6,12 @@
 			</sc-upload-file>
 		</el-card>
 
+		<el-card shadow="never" header="文件示例(值为对象数组,适合保存原始文件名)">
+			<sc-upload-file v-model="fileurlArr" :limit="3" tip="最多上传3个文件,单个文件不要超过10M,请上传xlsx/docx格式文件">
+				<el-button type="primary" icon="el-icon-upload">上传附件</el-button>
+			</sc-upload-file>
+		</el-card>
+
 		<el-card shadow="never" header="图片卡片示例(已开启拖拽排序)">
 			<sc-upload-multiple v-model="fileurl2" draggable :limit="3" tip="最多上传3个文件,单个文件不要超过10M,请上传图像格式文件"></sc-upload-multiple>
 		</el-card>
@@ -69,6 +75,16 @@
 		data() {
 			return {
 				uploadApi: this.$API.common.upload,
+				fileurlArr: [
+					{
+						name: '销售合同模板.xlsx',
+						url: 'http://www.scuiadmin.com/files/220000198611262243.xlsx'
+					},
+					{
+						name: '企业员工联系方式.xlsx',
+						url: 'http://www.scuiadmin.com/files/350000201004261875.xlsx',
+					}
+				],
 				fileurl: "http://www.scuiadmin.com/files/220000198611262243.xlsx,http://www.scuiadmin.com/files/350000201004261875.xlsx",
 				fileurl2: "img/auth_banner.jpg,img/avatar3.gif",
 				fileurl3: "img/auth_banner.jpg",

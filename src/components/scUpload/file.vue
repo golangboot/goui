@@ -1,22 +1,22 @@
 <template>
 	<div class="sc-upload-file">
-		<el-upload 
-			:disabled="disabled" 
-			:auto-upload="autoUpload" 
-			:action="action" 
-			:name="name" 
-			:data="data" 
-			:http-request="request" 
-			:file-list="defaultFileList" 
-			:show-file-list="showFileList" 
-			:drag="drag" 
-			:accept="accept" 
-			:multiple="multiple" 
-			:limit="limit" 
-			:before-upload="before" 
-			:on-success="success" 
-			:on-error="error" 
-			:on-preview="handlePreview" 
+		<el-upload
+			:disabled="disabled"
+			:auto-upload="autoUpload"
+			:action="action"
+			:name="name"
+			:data="data"
+			:http-request="request"
+			:file-list="defaultFileList"
+			:show-file-list="showFileList"
+			:drag="drag"
+			:accept="accept"
+			:multiple="multiple"
+			:limit="limit"
+			:before-upload="before"
+			:on-success="success"
+			:on-error="error"
+			:on-preview="handlePreview"
 			:on-exceed="handleExceed">
 			<slot>
 				<el-button type="primary" :disabled="disabled">Click to upload</el-button>
@@ -34,7 +34,7 @@
 
 	export default {
 		props: {
-			modelValue: { type: String, default: "" },
+			modelValue: { type: [String, Array], default: "" },
 			tip: { type: String, default: "" },
 			action: { type: String, default: "" },
 			apiObj: { type: Object, default: () => {} },
@@ -58,28 +58,35 @@
 		},
 		watch:{
 			modelValue(val){
-				if (val != this.toStr(this.defaultFileList)) {
-					this.defaultFileList = this.toArr(val)
-					this.value = val
+				if(Array.isArray(val)){
+					if (JSON.stringify(val) != JSON.stringify(this.formatArr(this.defaultFileList))) {
+						this.defaultFileList = val
+						this.value = val
+					}
+				}else{
+					if (val != this.toStr(this.defaultFileList)) {
+						this.defaultFileList = this.toArr(val)
+						this.value = val
+					}
 				}
 			},
 			defaultFileList: {
 				handler(val){
-					this.$emit('update:modelValue', this.toStr(val))
+					this.$emit('update:modelValue', Array.isArray(this.modelValue) ? this.formatArr(val) : this.toStr(val))
 					this.value = this.toStr(val)
 				},
 				deep: true
 			}
 		},
 		mounted() {
+			this.defaultFileList = Array.isArray(this.modelValue) ? this.modelValue : this.toArr(this.modelValue)
 			this.value = this.modelValue
-			this.defaultFileList = this.toArr(this.modelValue)
 		},
 		methods: {
 			//默认值转换为数组
 			toArr(str){
-				var _arr = [];
-				var arr = str.split(",");
+				var _arr = []
+				var arr = str.split(",")
 				arr.forEach(item => {
 					if(item){
 						var urlArr = item.split('/');
@@ -90,11 +97,24 @@
 						})
 					}
 				})
-				return _arr;
+				return _arr
 			},
 			//数组转换为原始值
 			toStr(arr){
 				return arr.map(v => v.url).join(",")
+			},
+			//格式化数组值
+			formatArr(arr){
+				var _arr = []
+				arr.forEach(item => {
+					if(item){
+						_arr.push({
+							name: item.name,
+							url: item.url
+						})
+					}
+				})
+				return _arr
 			},
 			before(file){
 				const maxSize = file.size / 1024 / 1024 < this.maxSize;
