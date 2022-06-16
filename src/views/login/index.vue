@@ -51,10 +51,12 @@
 						<phone-form></phone-form>
 					</el-tab-pane>
 				</el-tabs>
-				<el-divider>{{ $t('login.signInOther') }}</el-divider>
-				<div class="login-oauth">
-					<el-button type="success" icon="sc-icon-wechat" circle @click="wechatLogin"></el-button>
-				</div>
+				<template v-if="$CONFIG.MY_SHOW_LOGIN_OAUTH">
+					<el-divider>{{ $t('login.signInOther') }}</el-divider>
+					<div class="login-oauth">
+						<el-button type="success" icon="sc-icon-wechat" circle @click="wechatLogin"></el-button>
+					</div>
+				</template>
 			</div>
 		</div>
 	</div>

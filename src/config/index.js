@@ -67,10 +67,14 @@ const DEFAULT_CONFIG = {
 	}
 }
 
+//合并业务配置
+import MY_CONFIG from "./myConfig"
+Object.assign(DEFAULT_CONFIG, MY_CONFIG)
+
 // 如果生产模式，就合并动态的APP_CONFIG
 // public/config.js
 if(process.env.NODE_ENV === 'production'){
 	Object.assign(DEFAULT_CONFIG, APP_CONFIG)
 }
 
-module.exports = DEFAULT_CONFIG
+export default DEFAULT_CONFIG
