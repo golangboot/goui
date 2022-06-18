@@ -36,7 +36,7 @@
 		data() {
 			return {
 				form: {
-					icon: ''
+					icon: 'el-icon-apple'
 				},
 				rules: {
 					icon: [
