@@ -42,7 +42,8 @@
 		watch:{
 			data(val) {
 				val.forEach(item => {
-					this.selected[item.key] = this.selectedValues[item.key] || [item.options[0].value]
+					this.selected[item.key] = this.selectedValues[item.key] ||
+                      (Array.isArray(item.options) && item.options.length) ? [item.options[0].value] : []
 				})
 			}
 		},
@@ -58,7 +59,8 @@
 		mounted() {
 			//默认赋值
 			this.data.forEach(item => {
-				this.selected[item.key] = this.selectedValues[item.key] || [item.options[0].value]
+				this.selected[item.key] = this.selectedValues[item.key] ||
+                (Array.isArray(item.options) && item.options.length) ? [item.options[0].value] : []
 			})
 		},
 		methods: {

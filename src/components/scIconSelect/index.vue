@@ -74,6 +74,7 @@
 			}
 		},
 		mounted() {
+		    this.value = this.modelValue
 			this.data.push(...config.icons)
 		},
 		methods: {
