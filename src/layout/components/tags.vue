@@ -126,13 +126,14 @@
 			},
 			//关闭tag
 			closeSelectedTag(tag, autoPushLatestView=true) {
+				const nowTagIndex = this.tagList.findIndex(item => item.fullPath == tag.fullPath)
 				this.$store.commit("removeViewTags", tag)
 				this.$store.commit("removeIframeList", tag)
 				this.$store.commit("removeKeepLive", tag.name)
 				if (autoPushLatestView && this.isActive(tag)) {
-					const latestView = this.tagList.slice(-1)[0]
-					if (latestView) {
-						this.$router.push(latestView)
+					const leftView = this.tagList[nowTagIndex - 1]
+					if (leftView) {
+						this.$router.push(leftView)
 					} else {
 						this.$router.push('/')
 					}

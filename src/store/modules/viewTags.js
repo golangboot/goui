@@ -1,13 +1,20 @@
+import router from '@/router'
+
 export default {
 	state: {
 		viewTags: []
 	},
 	mutations: {
 		pushViewTags(state, route){
+			let backPathIndex = state.viewTags.findIndex(item => item.fullPath == router.options.history.state.back)
 			let target = state.viewTags.find((item) => item.fullPath === route.fullPath)
 			let isName = route.name
 			if(!target && isName){
-				state.viewTags.push(route)
+				if(backPathIndex == -1){
+					state.viewTags.push(route)
+				}else{
+					state.viewTags.splice(backPathIndex+1, 0, route)
+				}
 			}
 		},
 		removeViewTags(state, route){
