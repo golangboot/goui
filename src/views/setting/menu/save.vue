@@ -53,6 +53,12 @@
 						<el-checkbox v-model="form.meta.hiddenBreadcrumb">隐藏面包屑</el-checkbox>
 						<div class="el-form-item-msg">菜单不显示在导航中，但用户依然可以访问，例如详情页</div>
 					</el-form-item>
+					<el-form-item label="整页路由" prop="fullpage">
+						<el-switch v-model="form.meta.fullpage" />
+					</el-form-item>
+					<el-form-item label="标签" prop="tag">
+						<el-input v-model="form.meta.tag" clearable placeholder=""></el-input>
+					</el-form-item>
 					<el-form-item>
 						<el-button type="primary" @click="save" :loading="loading">保 存</el-button>
 					</el-form-item>
@@ -103,7 +109,9 @@
 						icon: "",
 						active: "",
 						color: "",
-						type: "menu"
+						type: "menu",
+						fullpage: false,
+						tag: "",
 					},
 					apiList: []
 				},

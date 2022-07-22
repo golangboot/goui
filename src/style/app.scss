@@ -62,6 +62,9 @@ a,button,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);box-sizing: bo
 .adminui-side-bottom i {font-size: 16px;}
 .adminui-side-bottom:hover {color: var(--el-color-primary);}
 .aminui-side.isCollapse {width: 65px;}
+.el-menu .menu-tag {position: absolute;height: 18px;line-height: 18px;background: var(--el-color-danger);font-size: 12px;color: #fff;right: 20px;border-radius:18px;padding:0 6px;}
+.el-menu .el-sub-menu__title .menu-tag {right: 40px;}
+.el-menu--horizontal > li .menu-tag {display: none;}
 
 /* 右侧内容 */
 .aminui-body {flex: 1;display: flex;flex-flow: column;}
