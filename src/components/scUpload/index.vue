@@ -150,7 +150,10 @@
 					this.$refs.uploader.clearFiles()
 				})
 			},
-			change(file){
+			change(file,files){
+				if(files.length > 1){
+					files.splice(0, 1)
+				}
 				if(this.cropper && file.status=='ready'){
 					const acceptIncludes = ["image/gif", "image/jpeg", "image/png"].includes(file.raw.type)
 					if(!acceptIncludes){
