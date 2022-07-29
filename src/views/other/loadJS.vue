@@ -40,7 +40,7 @@
 				//																							╭───这两个字符串要一致───╮
 				var BMapGL = await loadJS(`//api.map.baidu.com/api?type=webgl&v=1.0&ak=${ak}&callback=BMapGLinit`, "BMapGL", "BMapGLinit")
 				//像BMapGLLib就没有callback，无需第3个参数
-				var BMapGLLib = await loadJS("//api.map.baidu.com/library/LuShu/gl/src/LuShu_min.js", "BMapGLLib")
+				//var BMapGLLib = await loadJS("//api.map.baidu.com/library/LuShu/gl/src/LuShu_min.js", "BMapGLLib")
 
 
 				var map = new BMapGL.Map('container')
@@ -51,48 +51,6 @@
 					poiText: false,
 					poiIcon: false
 				})
-
-				var path = [{
-					'lng': 116.297611,
-					'lat': 40.047363
-				}, {
-					'lng': 116.302839,
-					'lat': 40.048219
-				}, {
-					'lng': 116.308301,
-					'lat': 40.050566
-				}, {
-					'lng': 116.305732,
-					'lat': 40.054957
-				}, {
-					'lng': 116.304754,
-					'lat': 40.057953
-				}, {
-					'lng': 116.306487,
-					'lat': 40.058312
-				}, {
-					'lng': 116.307223,
-					'lat': 40.056379
-				}];
-				var point = [];
-				for (var i = 0; i < path.length; i++) {
-					point.push(new BMapGL.Point(path[i].lng, path[i].lat));
-				}
-				var pl = new BMapGL.Polyline(point, {
-					strokeColor: "blue",
-					strokeWeight: 10,
-					strokeOpacity: 0.5
-				});
-				map.addOverlay(pl);
-				var lushu = new BMapGLLib.LuShu(map, pl.getPath(), {
-					autoCenter: true,
-					icon  : new BMapGL.Icon('img/logo.png', new BMapGL.Size(30,30)),
-					speed: 30,
-					enableRotation: true
-				});
-				setTimeout(()=>{
-					lushu.start()
-				},1000)
 			}
 		}
 	}
