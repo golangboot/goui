@@ -7,7 +7,7 @@
 			:name="name"
 			:data="data"
 			:http-request="request"
-			:file-list="defaultFileList"
+			v-model:file-list="defaultFileList"
 			:show-file-list="showFileList"
 			:accept="accept"
 			:multiple="multiple"
