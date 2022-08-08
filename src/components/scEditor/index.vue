@@ -72,6 +72,7 @@
 					statusbar: true,
 					plugins: this.plugins,
 					toolbar: this.toolbar,
+					toolbar_mode: 'sliding',
 					font_size_formats: '12px 14px 16px 18px 22px 24px 36px 72px',
 					height: this.height,
 					placeholder: this.placeholder,
@@ -100,7 +101,18 @@
 						editor.on('init', function() {
 							this.getBody().style.fontSize = '14px';
 						})
-
+						editor.on('OpenWindow', function(e) {
+							//FIX 编辑器在el-drawer中，编辑器的弹框无法获得焦点
+							var D = document.querySelector('.el-drawer.open')
+							var E = e.target.editorContainer
+							if(D && D.contains(E)){
+								var nowDA = document.activeElement
+								setTimeout(()=>{
+									document.activeElement.blur()
+									nowDA.focus()
+								},0)
+							}
+						})
 					}
 				},
 				contentValue: this.modelValue
