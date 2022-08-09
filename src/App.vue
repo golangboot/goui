@@ -1,5 +1,5 @@
 <template>
-	<el-config-provider :locale="config.locale" :size="config.size" :zIndex="config.zIndex" :button="config.button">
+	<el-config-provider :locale="locale" :size="config.size" :zIndex="config.zIndex" :button="config.button">
 		<router-view></router-view>
 	</el-config-provider>
 </template>
@@ -12,7 +12,6 @@
 		data() {
 			return {
 				config: {
-					locale: this.$i18n.messages[this.$i18n.locale].el,
 					size: "default",
 					zIndex: 2000,
 					button: {
@@ -20,6 +19,11 @@
 					}
 				}
 			}
+		},
+		computed: {
+			locale(){
+				return this.$i18n.messages[this.$i18n.locale].el
+			},
 		},
 		created() {
 			//设置主题颜色
