@@ -106,6 +106,7 @@
 					}
 					this.$TOOL.data.set("MENU", menu.data.menu)
 					this.$TOOL.data.set("PERMISSIONS", menu.data.permissions)
+					this.$TOOL.data.set("DASHBOARDGRID", menu.data.dashboardGrid)
 				}else{
 					this.islogin = false
 					this.$message.warning(menu.message)

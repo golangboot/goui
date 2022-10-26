@@ -28,6 +28,11 @@
 					</el-form-item>
 				</el-form>
 			</el-tab-pane>
+			<el-tab-pane label="控制台模块">
+				<div class="treeMain">
+					<el-tree ref="grid" node-key="key" :data="grid.list" :props="grid.props" :default-checked-keys="grid.checked" show-checkbox></el-tree>
+				</div>
+			</el-tab-pane>
 			<el-tab-pane label="控制台">
 				<el-form label-width="100px" label-position="left">
 					<el-form-item label="控制台视图">
@@ -65,6 +70,15 @@
 						}
 					}
 				},
+				grid: {
+					list: [],
+					checked: ["welcome", "ver", "time", "progress", "echarts", "about"],
+					props: {
+						label: (data)=>{
+							return data.title
+						}
+					}
+				},
 				data: {
 					dataType :"1",
 					list: [],
@@ -91,6 +105,7 @@
 		mounted() {
 			this.getMenu()
 			this.getDept()
+			this.getGrid()
 		},
 		methods: {
 			open(){
@@ -132,6 +147,34 @@
 					let filterKeys = this.data.checked.filter(key => this.$refs.dept.getNode(key).isLeaf)
 					this.$refs.dept.setCheckedKeys(filterKeys, true)
 				})
+			},
+			getGrid(){
+				this.grid.list = [
+					{
+						key: "welcome",
+						title: "欢迎"
+					},
+					{
+						key: "ver",
+						title: "版本信息"
+					},
+					{
+						key: "time",
+						title: "时钟"
+					},
+					{
+						key: "progress",
+						title: "进度环"
+					},
+					{
+						key: "echarts",
+						title: "实时收入"
+					},
+					{
+						key: "about",
+						title: "关于项目"
+					}
+				]
 			}
 		}
 	}
