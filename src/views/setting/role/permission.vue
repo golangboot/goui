@@ -76,6 +76,9 @@
 					props: {
 						label: (data)=>{
 							return data.title
+						},
+						disabled: (data)=>{
+							return data.isFixed
 						}
 					}
 				},
@@ -152,11 +155,13 @@
 				this.grid.list = [
 					{
 						key: "welcome",
-						title: "欢迎"
+						title: "欢迎",
+						isFixed: true
 					},
 					{
 						key: "ver",
-						title: "版本信息"
+						title: "版本信息",
+						isFixed: true
 					},
 					{
 						key: "time",
