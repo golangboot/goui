@@ -48,6 +48,10 @@
 				this.$TOOL.data.set("APP_LANG", val);
 			},
 			'config.colorPrimary'(val){
+				if(!val){
+					val = '#409EFF'
+					this.config.colorPrimary = '#409EFF'
+				}
 				document.documentElement.style.setProperty('--el-color-primary', val);
 				for (let i = 1; i <= 9; i++) {
 					document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, colorTool.lighten(val,i/10));
