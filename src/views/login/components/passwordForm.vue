@@ -1,5 +1,5 @@
 <template>
-	<el-form ref="loginForm" :model="form" :rules="rules" label-width="0" size="large">
+	<el-form ref="loginForm" :model="form" :rules="rules" label-width="0" size="large" @keyup.enter="login">
 		<el-form-item prop="user">
 			<el-input v-model="form.user" prefix-icon="el-icon-user" clearable :placeholder="$t('login.userPlaceholder')">
 				<template #append>
