@@ -27,6 +27,7 @@ html.dark {
 	.adminui-main {background: var(--el-bg-color);}
 	.drawerBG {background: var(--el-bg-color);}
 	.adminui-header-menu .el-menu {--el-menu-bg-color:var(--el-bg-color-overlay) !important;--el-menu-hover-bg-color: #171819 !important;}
+	.adminui-header-menu .el-menu .el-sub-menu__title {background-color:transparent !important;}
 
 	//全局滚动条样式
 	::-webkit-scrollbar-thumb {background-color: rgba(163, 166, 173, 0.3);}
