@@ -1,6 +1,6 @@
 <template>
 	<el-main>
-		<el-alert title="SCUI独创, 区别于市面上的规则生成器, 对不是很理解Cron的操作员也可以选择设置的快捷录入" type="success" style="margin-bottom:20px;"></el-alert>
+		<el-alert title="BmwBootUI独创, 区别于市面上的规则生成器, 对不是很理解Cron的操作员也可以选择设置的快捷录入" type="success" style="margin-bottom:20px;"></el-alert>
 		<el-row :gutter="15">
 			<el-col :lg="12">
 				<el-card shadow="never" header="默认">

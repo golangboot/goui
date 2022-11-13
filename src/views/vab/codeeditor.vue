@@ -40,7 +40,7 @@
 			return {
 				json:
 `{
-	"name": "SCUI",
+	"name": "BmwBootUI",
 	"menu": [
 		{
 			"title": "VUE 3",

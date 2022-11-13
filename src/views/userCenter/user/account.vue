@@ -32,8 +32,8 @@
 		data() {
 			return {
 				form: {
-					user: "administrator@scuiadmin.com",
-					name: "Sakuya",
+					user: "administrator@gmail.com",
+					name: "Administrator",
 					sex: "0",
 					about: "正所谓富贵险中求"
 				}

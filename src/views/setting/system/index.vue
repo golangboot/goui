@@ -106,11 +106,11 @@
 		data() {
 			return {
 				sys: {
-					name: "SCUI",
+					name: "BmwBootUI",
 					logoUrl: "",
 					login: true,
 					passwordRules: "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$",
-					copyright: "@SCUI"
+					copyright: "@BmwBootUI"
 				},
 				msg: {
 					open: true,
