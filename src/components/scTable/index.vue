@@ -103,6 +103,9 @@
 			apiObj(){
 				this.tableParams = this.params;
 				this.refresh();
+			},
+			column(){
+				this.userColumn=this.column;
 			}
 		},
 		computed: {
