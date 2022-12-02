@@ -153,6 +153,7 @@
 </script>
 
 <style scoped>
+	.menu:deep(.el-tree-node__label) {display: flex;flex: 1;height:100%;}
 	.custom-tree-node {display: flex;flex: 1;align-items: center;justify-content: space-between;font-size: 14px;height:100%;padding-right:24px;}
 	.custom-tree-node .label {display: flex;align-items: center;;height: 100%;}
 	.custom-tree-node .label .el-tag {margin-left: 5px;}
