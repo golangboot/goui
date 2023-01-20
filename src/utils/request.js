@@ -83,9 +83,9 @@ axios.interceptors.response.use(
 var http = {
 
 	/** get 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} params
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} params 请求参数
+	 * @param  {object} config 参数
 	 */
 	get: function(url, params={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -103,9 +103,9 @@ var http = {
 	},
 
 	/** post 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	post: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -123,9 +123,9 @@ var http = {
 	},
 
 	/** put 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	put: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -143,9 +143,9 @@ var http = {
 	},
 
 	/** patch 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	patch: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -163,9 +163,9 @@ var http = {
 	},
 
 	/** delete 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	delete: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -183,8 +183,8 @@ var http = {
 	},
 
 	/** jsonp 请求
-	 * @param  {接口地址} url
-	 * @param  {JSONP回调函数名称} name
+	 * @param  {string} url 接口地址
+	 * @param  {string} name JSONP回调函数名称
 	 */
 	jsonp: function(url, name='jsonp'){
 		return new Promise((resolve) => {
