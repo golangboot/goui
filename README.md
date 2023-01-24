@@ -54,7 +54,7 @@ BmwBootUI的宗旨是 让一切复杂的东西傻瓜化。
 ## 安装教程
 ``` sh
 # 克隆项目
-git clone https://gitee.com/hungyuvip/bmwboot-ui.git
+git clone https://gitee.com/hungyuvip/bmw-boot-ui.git
 
 # 进入项目目录
 cd scui

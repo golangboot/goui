@@ -53,7 +53,7 @@
 		},
 		methods: {
 			goIssue(){
-				window.open("https://gitee.com/hungyuvip/bmwboot-ui/issues")
+				window.open("https://gitee.com/hungyuvip/bmw-boot-ui/issues")
 			}
 		}
 	}

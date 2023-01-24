@@ -31,10 +31,10 @@
 				this.ver = ver.data
 			},
 			golog(){
-				window.open("https://gitee.com/hungyuvip/bmwboot-ui/releases")
+				window.open("https://gitee.com/hungyuvip/bmw-boot-ui/releases")
 			},
 			gogit(){
-				window.open("https://gitee.com/hungyuvip/bmwboot-ui")
+				window.open("https://gitee.com/hungyuvip/bmw-boot-ui")
 			}
 		}
 	}
