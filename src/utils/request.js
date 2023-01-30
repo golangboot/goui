@@ -27,6 +27,9 @@ axios.interceptors.request.use(
 	}
 );
 
+//FIX 多个API同时401时疯狂弹窗BUG
+let MessageBox_401_show = false
+
 // HTTP response 拦截器
 axios.interceptors.response.use(
 	(response) => {
@@ -45,14 +48,21 @@ axios.interceptors.response.use(
 					message: error.response.data.message || "Status:500，服务器发生错误！"
 				});
 			} else if (error.response.status == 401) {
-				ElMessageBox.confirm('当前用户已被登出或无权限访问当前资源，请尝试重新登录后再操作。', '无权限访问', {
-					type: 'error',
-					closeOnClickModal: false,
-					center: true,
-					confirmButtonText: '重新登录'
-				}).then(() => {
-					router.replace({path: '/login'});
-				}).catch(() => {})
+				if(!MessageBox_401_show){
+					MessageBox_401_show = true
+					ElMessageBox.confirm('当前用户已被登出或无权限访问当前资源，请尝试重新登录后再操作。', '无权限访问', {
+						type: 'error',
+						closeOnClickModal: false,
+						center: true,
+						confirmButtonText: '重新登录',
+						beforeClose: (action, instance, done) => {
+							MessageBox_401_show = false
+							done()
+						}
+					}).then(() => {
+						router.replace({path: '/login'});
+					}).catch(() => {})
+				}
 			} else {
 				ElNotification.error({
 					title: '请求错误',
@@ -73,9 +83,9 @@ axios.interceptors.response.use(
 var http = {
 
 	/** get 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} params
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} params 请求参数
+	 * @param  {object} config 参数
 	 */
 	get: function(url, params={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -93,9 +103,9 @@ var http = {
 	},
 
 	/** post 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	post: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -113,9 +123,9 @@ var http = {
 	},
 
 	/** put 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	put: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -133,9 +143,9 @@ var http = {
 	},
 
 	/** patch 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	patch: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -153,9 +163,9 @@ var http = {
 	},
 
 	/** delete 请求
-	 * @param  {接口地址} url
-	 * @param  {请求参数} data
-	 * @param  {参数} config
+	 * @param  {string} url 接口地址
+	 * @param  {object} data 请求参数
+	 * @param  {object} config 参数
 	 */
 	delete: function(url, data={}, config={}) {
 		return new Promise((resolve, reject) => {
@@ -173,8 +183,8 @@ var http = {
 	},
 
 	/** jsonp 请求
-	 * @param  {接口地址} url
-	 * @param  {JSONP回调函数名称} name
+	 * @param  {string} url 接口地址
+	 * @param  {string} name JSONP回调函数名称
 	 */
 	jsonp: function(url, name='jsonp'){
 		return new Promise((resolve) => {

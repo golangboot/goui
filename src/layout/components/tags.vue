@@ -65,17 +65,16 @@
 				})
 			},
 			contextMenuVisible(value) {
-				var _this = this;
-				var cm = function(e){
-					let sp = document.getElementById("contextmenu");
-					if(sp&&!sp.contains(e.target)){
-						_this.closeMenu()
+				const cm = (e) => {
+					const sp = document.getElementById("contextmenu");
+					if (sp && !sp.contains(e.target)) {
+						this.closeMenu()
 					}
 				}
 				if (value) {
-					document.body.addEventListener('click', e=>cm(e))
-				}else{
-					document.body.removeEventListener('click',  e=>cm(e))
+					document.body.addEventListener('click', e => cm(e))
+				} else {
+					document.body.removeEventListener('click', e => cm(e))
 				}
 			}
 		},
@@ -160,24 +159,24 @@
 				this.contextMenuVisible = false
 			},
 			//TAB 刷新
-			refreshTab(){
-				var nowTag = this.contextMenuItem;
+			refreshTab() {
 				this.contextMenuVisible = false
+				const nowTag = this.contextMenuItem;
 				//判断是否当前路由，否的话跳转
-				if(this.$route.fullPath != nowTag.fullPath){
+				if (this.$route.fullPath !== nowTag.fullPath) {
 					this.$router.push({
 						path: nowTag.fullPath,
 						query: nowTag.query
 					})
 				}
+				
 				this.$store.commit("refreshIframe", nowTag)
-				var _this = this;
-				setTimeout(function() {
-					_this.$store.commit("removeKeepLive", nowTag.name)
-					_this.$store.commit("setRouteShow", false)
-					_this.$nextTick(() => {
-						_this.$store.commit("pushKeepLive",nowTag.name)
-						_this.$store.commit("setRouteShow", true)
+				setTimeout(() => {
+					this.$store.commit("removeKeepLive", nowTag.name)
+					this.$store.commit("setRouteShow", false)
+					this.$nextTick(() => {
+						this.$store.commit("pushKeepLive", nowTag.name)
+						this.$store.commit("setRouteShow", true)
 					})
 				}, 0);
 			},

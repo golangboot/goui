@@ -13,6 +13,12 @@ export default {
 			return
 		}
 		let permissions = tool.data.get("PERMISSIONS");
-		if (!permissions.some((v) => v === binding.value)) el.parentNode.removeChild(el);
+		let flag = false;
+		permissions.map((val) => {
+			binding.value.map((v) => {
+				if (val === v) flag = true;
+			});
+		});
+		if (!flag) el.parentNode.removeChild(el);
 	}
 }

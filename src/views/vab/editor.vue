@@ -13,6 +13,7 @@
 				<el-descriptions-item label="toolbar">自定义工具栏，使用"|"竖杠分割，使用"\"斜杠分组，默认：'undo redo |  forecolor backcolor bold italic underline strikethrough link | blocks fontfamily fontsize | \
 					alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | pagebreak | \
 					image media table template preview | code selectall'</el-descriptions-item>
+				<el-descriptions-item label="options">支持tinymce的其他配置项</el-descriptions-item>
 			</el-descriptions>
 		</el-card>
 	</el-main>
