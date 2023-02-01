@@ -9,7 +9,7 @@
 				</template>
 			</scFilterBar>
 		</el-card>
-		<el-alert title="BmwBootUI 独创的过滤条Filterbar,可配置不同类型的过滤字段,以及异步获取数据,在@/config/filterBar.js中可以更改运算符以及其他配置,操作上方过滤条查看下方change事件的回调,在表格查询的场景下非常合适" type="success" style="margin:20px 0;"></el-alert>
+		<el-alert title="BmwAdminUI 独创的过滤条Filterbar,可配置不同类型的过滤字段,以及异步获取数据,在@/config/filterBar.js中可以更改运算符以及其他配置,操作上方过滤条查看下方change事件的回调,在表格查询的场景下非常合适" type="success" style="margin:20px 0;"></el-alert>
 		<el-card shadow="never" header="返回值">
 			<pre>{{ filterData }}</pre>
 		</el-card>
