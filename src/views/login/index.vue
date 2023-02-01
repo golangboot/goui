@@ -126,7 +126,7 @@
 			this.$store.commit("clearViewTags")
 			this.$store.commit("clearKeepLive")
 			this.$store.commit("clearIframeList")
-			console.log('%c BmwAdminUI %c Gitee: https://gitee.com/hungyuvip/bmw-boot-ui', 'background:#666;color:#fff;border-radius:3px;', '')
+			console.log('%c BmwAdminUI %c Gitee: https://gitee.com/bmwboot/bmwboot-ui', 'background:#666;color:#fff;border-radius:3px;', '')
 		},
 		methods: {
 			configDark(){

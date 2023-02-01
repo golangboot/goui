@@ -2,8 +2,8 @@
 	<el-card shadow="hover" header="关于项目" class="item-background">
 		<p>高性能 / 精致 / 优雅。基于Vue3 + Element-Plus 的中后台前端解决方案，如果喜欢就点个星星支持一下。</p>
 		<p style="display: flex;align-items: start;align-items: self-start;">
-			<a href='https://gitee.com/hungyuvip/bmw-boot-ui' target="_blank" style="display: flex;">
-				<img src='https://gitee.com/hungyuvip/bmw-boot-ui/badge/star.svg?theme=dark' alt='star'>
+			<a href='https://gitee.com/bmwboot/bmwboot-ui' target="_blank" style="display: flex;">
+				<img src='https://gitee.com/bmwboot/bmwboot-ui/badge/star.svg?theme=dark' alt='star'>
 			</a>
 			<a href='https://github.com/hongyukeji/bmw-boot-ui' target="_blank" style="display: flex;">
 				<img src='https://img.shields.io/github/stars/hongyukeji/bmw-boot-ui.svg?style=flat-square&logo=GitHub' alt='star'>
