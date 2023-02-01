@@ -133,7 +133,8 @@
 				return allCompsList
 			},
 			myCompsList(){
-				return this.allCompsList.filter(item => !item.disabled )
+				var myGrid = this.$TOOL.data.get("DASHBOARDGRID")
+				return this.allCompsList.filter(item => !item.disabled && myGrid.includes(item.key))
 			},
 			nowCompsList(){
 				return this.grid.copmsList.reduce(function(a, b){return a.concat(b)})

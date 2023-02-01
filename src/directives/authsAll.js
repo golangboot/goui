@@ -1,4 +1,4 @@
-import { permissionAll } from '@/utils/permission'
+import { permissionAll, judementSameArr } from '@/utils/permission'
 import tool from '@/utils/tool';
 
 /**
@@ -13,6 +13,7 @@ export default {
 			return
 		}
 		let permissions = tool.data.get("PERMISSIONS");
-		if (!permissions.some((v) => v === binding.value)) el.parentNode.removeChild(el);
+		const flag = judementSameArr(binding.value, permissions);
+		if (!flag) el.parentNode.removeChild(el);
 	}
 }
