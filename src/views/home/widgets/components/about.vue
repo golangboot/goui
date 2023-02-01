@@ -5,8 +5,8 @@
 			<a href='https://gitee.com/bmwboot/bmwboot-ui' target="_blank" style="display: flex;">
 				<img src='https://gitee.com/bmwboot/bmwboot-ui/badge/star.svg?theme=dark' alt='star'>
 			</a>
-			<a href='https://github.com/hongyukeji/bmw-boot-ui' target="_blank" style="display: flex;">
-				<img src='https://img.shields.io/github/stars/hongyukeji/bmw-boot-ui.svg?style=flat-square&logo=GitHub' alt='star'>
+			<a href='https://github.com/bmwboot/bmwboot-ui' target="_blank" style="display: flex;">
+				<img src='https://img.shields.io/github/stars/bmwboot/bmwboot-ui.svg?style=flat-square&logo=GitHub' alt='star'>
 			</a>
 		</p>
 	</el-card>
