@@ -116,6 +116,7 @@
 			showOperator: { type: Boolean, default: true },
 			options: { type: Object, default: () => {} }
 		},
+		emits: ['filterChange'],
 		data() {
 			return {
 				drawer: false,
