@@ -195,6 +195,8 @@
 			},
 			//下拉框显示事件处理异步搜索
 			async remoteMethod(query, item){
+				//无request则不请求异步搜索
+                if(!item.field.extend.request) return;
 				if(query !== ''){
 					item.selectLoading = true;
 					try {
