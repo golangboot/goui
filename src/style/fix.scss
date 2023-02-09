@@ -32,7 +32,7 @@
 .el-header .left-panel {display: flex;align-items: center;}
 .el-header .right-panel {display: flex;align-items: center;}
 .el-header .right-panel > * + * {margin-left:10px;}
-.el-footer {background: #fff;border-top: 1px solid var(--el-border-color-light);padding:13px 15px;height: 51px;}
+.el-footer {background: #fff;border-top: 1px solid var(--el-border-color-light);padding:13px 15px;}
 .el-main {padding:15px;}
 .el-main.nopadding {padding:0;background: #fff;}
 .el-drawer__body {overflow: auto;padding:0;}
@@ -49,7 +49,6 @@
 .drawerBG {background: #f6f8f9;}
 .el-button+.el-dropdown {margin-left: 10px;}
 .el-button-group+.el-dropdown {margin-left: 10px;}
-.el-tag+.el-tag {margin-left: 10px;}
 .el-button-group+.el-button-group {margin-left: 10px;}
 .el-tabs__nav-wrap::after {height: 1px;}
 .el-table th.is-sortable {transition: .1s;}
@@ -77,6 +76,9 @@
 .contextmenu li:hover {background-color: var(--el-color-primary-light-9)!important;color: var(--el-color-primary-light-2)!important;}
 .data-box .item-background {background-color: var(--el-color-primary)!important;}
 .layout-setting,.diy-grid-setting {background-color: var(--el-color-primary)!important;}
+
+/* 全部禁用el-tag动画 */
+.el-tag {transition: all 0s !important;}
 
 /* 覆盖tinymce样式 */
 .sceditor .tox-tinymce {border: 1px solid #DCDFE6;border-radius: 0;}
