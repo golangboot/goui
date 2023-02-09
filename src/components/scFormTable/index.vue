@@ -1,6 +1,15 @@
+<!--
+ * @Descripttion: 表单表格
+ * @version: 1.1
+ * @Author: sakuya
+ * @Date: 2023年2月9日12:32:26
+ * @LastEditors: sakuya
+ * @LastEditTime: 2023年2月9日12:32:26
+-->
+
 <template>
-	<div class="sc-form-table">
-		<el-table :data="data" ref="table" :key="toggleIndex" border stripe>
+	<div class="sc-form-table" ref="scFormTable">
+		<el-table :data="data" ref="table" border stripe>
 			<el-table-column type="index" width="50" fixed="left">
 				<template #header>
 					<el-button type="primary" icon="el-icon-plus" size="small" circle @click="rowAdd"></el-button>
@@ -12,9 +21,9 @@
 					</div>
 				</template>
 			</el-table-column>
-			<el-table-column label="" width="58" v-if="dragSort">
+			<el-table-column label="" width="50" v-if="dragSort">
 				<template #default>
-					<el-tag class="move" style="cursor: move;"><el-icon-d-caret style="width: 1em; height: 1em;"/></el-tag>
+					<div class="move" style="cursor: move;"><el-icon-d-caret style="width: 1em; height: 1em;"/></div>
 				</template>
 			</el-table-column>
 			<slot></slot>
@@ -37,8 +46,7 @@
 		},
 		data(){
 			return {
-				data: [],
-				toggleIndex: 0
+				data: []
 			}
 		},
 		mounted(){
@@ -67,12 +75,17 @@
 					animation: 300,
 					ghostClass: "ghost",
 					onEnd({ newIndex, oldIndex }) {
-						const tableData = _this.data
-						const currRow = tableData.splice(oldIndex, 1)[0]
-						tableData.splice(newIndex, 0, currRow)
-						_this.toggleIndex += 1
+						_this.data.splice(newIndex, 0, _this.data.splice(oldIndex, 1)[0])
+						const newArray = _this.data.slice(0)
+						const tmpHeight = _this.$refs.scFormTable.offsetHeight
+						_this.$refs.scFormTable.style.setProperty('height', tmpHeight + 'px')
+						_this.data = []
 						_this.$nextTick(() => {
-							_this.rowDrop()
+							_this.data = newArray
+							_this.$nextTick(() => {
+								_this.$refs.scFormTable.style.removeProperty('height')
+							})
+
 						})
 					}
 				})
@@ -95,4 +108,5 @@
 	.sc-form-table .sc-form-table-handle button {display: none;}
 	.sc-form-table .hover-row .sc-form-table-handle span {display: none;}
 	.sc-form-table .hover-row .sc-form-table-handle button {display: inline-block;}
+	.sc-form-table .move {text-align: center;font-size: 14px;margin-top: 3px;}
 </style>
