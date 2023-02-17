@@ -1,10 +1,10 @@
 <!--
  * @Descripttion: 表单表格
- * @version: 1.2
+ * @version: 1.3
  * @Author: sakuya
  * @Date: 2023年2月9日12:32:26
  * @LastEditors: sakuya
- * @LastEditTime: 2023年2月17日09:52:24
+ * @LastEditTime: 2023年2月17日10:41:47
 -->
 
 <template>
@@ -97,6 +97,15 @@
 				this.data.push(temp)
 			},
 			rowDel(row, index){
+				this.data.splice(index, 1)
+			},
+			//插入行
+			pushRow(row){
+				const temp = row || JSON.parse(JSON.stringify(this.addTemplate))
+				this.data.push(temp)
+			},
+			//根据index删除
+			deleteRow(index){
 				this.data.splice(index, 1)
 			}
 		}
