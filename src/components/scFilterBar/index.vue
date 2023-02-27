@@ -1,10 +1,10 @@
 <!--
  * @Descripttion: 过滤器V2
- * @version: 2.5
+ * @version: 2.6
  * @Author: sakuya
  * @Date: 2021年7月30日14:48:41
  * @LastEditors: sakuya
- * @LastEditTime: 2022年5月13日21:15:44
+ * @LastEditTime: 2023年2月7日09:46:45
 -->
 
 <template>
@@ -39,10 +39,10 @@
 										</colgroup>
 										<tr v-for="(item,index) in filter" :key="index">
 											<td>
-												<el-tag>{{index+1}}</el-tag>
+												<el-tag :disable-transitions="true">{{index+1}}</el-tag>
 											</td>
 											<td>
-												<py-select v-model="item.field" :options="fields" placeholder="过滤字段" filterable @change="fieldChange(item)">
+												<py-select v-model="item.field" :options="fields" :filter="filter" placeholder="过滤字段" filterable @change="fieldChange(item)">
 												</py-select>
 											</td>
 											<td v-if="showOperator">
@@ -66,6 +66,8 @@
 												<el-date-picker v-if="item.field.type=='datetime'" v-model="item.value" type="datetime" value-format="YYYY-MM-DD HH:mm:ss" :placeholder="item.field.placeholder||'请选择日期'" style="width: 100%;"></el-date-picker>
 												<!-- 日期时间范围 -->
 												<el-date-picker v-if="item.field.type=='datetimerange'" v-model="item.value" type="datetimerange" value-format="YYYY-MM-DD HH:mm:ss" start-placeholder="开始日期" end-placeholder="结束日期" style="width: 100%;"></el-date-picker>
+												<!-- 自定义日期 -->
+												<el-date-picker v-if="item.field.type=='customDate'" v-model="item.value" :type="item.field.extend.dateType||'date'" :value-format="item.field.extend.valueFormat" :placeholder="item.field.placeholder||'请选择'" start-placeholder="开始日期" end-placeholder="结束日期" style="width: 100%;"></el-date-picker>
 												<!-- 开关 -->
 												<el-switch v-if="item.field.type=='switch'" v-model="item.value" active-value="1" inactive-value="0"></el-switch>
 												<!-- 标签 -->
@@ -116,6 +118,7 @@
 			showOperator: { type: Boolean, default: true },
 			options: { type: Object, default: () => {} }
 		},
+		emits: ['filterChange'],
 		data() {
 			return {
 				drawer: false,
@@ -155,11 +158,13 @@
 			},
 			//增加过滤项
 			addFilter(){
-				if(this.fields.length<=0){
+				//下一组新增过滤
+				var filterArr = this.fields.filter(field => !this.filter.some(item => field.value == item.field.value && !item.field.repeat))
+				if(this.fields.length<=0 || filterArr.length<=0){
 					this.$message.warning('无过滤项');
 					return false
 				}
-				const filterNum = this.fields[this.filter.length] || this.fields[0]
+				const filterNum = filterArr[0]
 				this.filter.push({
 					field: filterNum,
 					operator: filterNum.operator || 'include',
@@ -195,6 +200,9 @@
 			},
 			//下拉框显示事件处理异步搜索
 			async remoteMethod(query, item){
+                if(!item.field.extend.request) {
+					return false;
+				}
 				if(query !== ''){
 					item.selectLoading = true;
 					try {

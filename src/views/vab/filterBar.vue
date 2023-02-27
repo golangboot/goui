@@ -133,9 +133,10 @@
 						]
 					},
 					{
-						label: '开关',
+						label: '开关(可重复)',
 						value: 'switch',
 						type: 'switch',
+						repeat: true,
 						operator: '='
 					},
 					{
@@ -158,6 +159,16 @@
 						label: '日期范围',
 						value: 'date2',
 						type: 'daterange'
+					},
+					{
+						label: '自定义日期',
+						value: 'date3',
+						type: 'customDate',
+						placeholder: '请选择月份',
+						extend: {
+							dateType: 'month',
+							valueFormat: 'YYYY-MM'
+						}
 					}
 				]
 			}
