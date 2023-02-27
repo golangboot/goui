@@ -69,7 +69,7 @@
 				tableData: [
 					{
 						id: '1',
-						name: 'BmwAdminUI',
+						name: 'GoBootAdminUI',
 						date: '2021-10-10',
 						state: 1
 					},

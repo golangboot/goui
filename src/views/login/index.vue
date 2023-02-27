@@ -2,7 +2,7 @@
 	<div class="login_bg">
 		<div class="login_adv" style="background-image: url(img/auth_banner.jpg);">
 			<div class="login_adv__title">
-				<h2>BmwAdminUI</h2>
+				<h2>GoBootAdminUI</h2>
 				<h4>{{ $t('login.slogan') }}</h4>
 				<p>{{ $t('login.describe') }}</p>
 				<div>
@@ -126,7 +126,7 @@
 			this.$store.commit("clearViewTags")
 			this.$store.commit("clearKeepLive")
 			this.$store.commit("clearIframeList")
-			console.log('%c BmwAdminUI %c Gitee: https://gitee.com/bmwboot/bmwboot-ui', 'background:#666;color:#fff;border-radius:3px;', '')
+			console.log('%c GoBootAdminUI %c Gitee: https://gitee.com/goboot/goboot-admin-ui', 'background:#666;color:#fff;border-radius:3px;', '')
 		},
 		methods: {
 			configDark(){
@@ -137,7 +137,7 @@
 			},
 			wechatLogin(){
 				this.showWechatLogin = true
-				this.WechatLoginCode = "BmwAdminUI-823677237287236-" + new Date().getTime()
+				this.WechatLoginCode = "GoBootAdminUI-823677237287236-" + new Date().getTime()
 				this.isWechatLoginResult = false
 				setTimeout(()=>{
 					this.isWechatLoginResult = true

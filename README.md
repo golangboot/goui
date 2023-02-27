@@ -15,15 +15,15 @@
 	</a>
 </p>
 
-<h1>BmwAdminUI Admin</h1>
+<h1>GoBootAdminUI Admin</h1>
 
 </div>
 
 ## 介绍
-BmwAdminUI 是一个中后台前端解决方案，基于VUE3和elementPlus实现。
+GoBootAdminUI 是一个中后台前端解决方案，基于VUE3和elementPlus实现。
 使用最新的前端技术栈，提供各类实用的组件方便在业务开发时的调用，并且持续性的提供丰富的业务模板帮助你快速搭建企业级中后台前端任务。
 
-BmwAdminUI的宗旨是 让一切复杂的东西傻瓜化。
+GoBootAdminUI的宗旨是 让一切复杂的东西傻瓜化。
 
 ![logo](https://lolicode.gitee.io/scui-doc/g_1.jpg)
 
@@ -54,7 +54,7 @@ BmwAdminUI的宗旨是 让一切复杂的东西傻瓜化。
 ## 安装教程
 ``` sh
 # 克隆项目
-git clone https://gitee.com/bmwboot/bmwboot-ui.git
+git clone https://gitee.com/goboot/goboot-admin-ui.git
 
 # 进入项目目录
 cd scui

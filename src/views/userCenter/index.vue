@@ -105,7 +105,7 @@
 					}
 				],
 				user: {
-					userName: "BmwAdminUI",
+					userName: "GoBootAdminUI",
 					role: "超级管理员",
 				},
 				page: "account"

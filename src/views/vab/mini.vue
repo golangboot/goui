@@ -53,7 +53,7 @@
 		},
 		methods: {
 			goIssue(){
-				window.open("https://gitee.com/bmwboot/bmwboot-ui/issues")
+				window.open("https://gitee.com/goboot/goboot-admin-ui/issues")
 			}
 		}
 	}
