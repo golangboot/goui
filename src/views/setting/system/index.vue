@@ -106,11 +106,11 @@
 		data() {
 			return {
 				sys: {
-					name: "GoBootAdminUI",
+					name: "GoAdminUI",
 					logoUrl: "",
 					login: true,
 					passwordRules: "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$",
-					copyright: "@GoBootAdminUI"
+					copyright: "@GoAdminUI"
 				},
 				msg: {
 					open: true,

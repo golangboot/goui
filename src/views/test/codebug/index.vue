@@ -9,7 +9,7 @@
 
 <template>
 	<el-main>
-		<el-alert title="通过VUE开放的errorHandler可以很方便的捕捉到处理异常, GoBootAdminUI收集后可上报日志收集系统, 相关代码:@/utils/errorHandler.js" type="success" style="margin-bottom:20px;"></el-alert>
+		<el-alert title="通过VUE开放的errorHandler可以很方便的捕捉到处理异常, GoAdminUI收集后可上报日志收集系统, 相关代码:@/utils/errorHandler.js" type="success" style="margin-bottom:20px;"></el-alert>
 		<el-row :gutter="15">
 			<el-col :lg="8">
 				<el-card shadow="never" header="ReferenceError">

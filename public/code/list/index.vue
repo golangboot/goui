@@ -1,7 +1,7 @@
 <!--
- * @Descripttion: 此文件由GoBootAdminUI生成，典型的VUE增删改列表页面组件
+ * @Descripttion: 此文件由GoAdminUI生成，典型的VUE增删改列表页面组件
  * @version: 1.0
- * @Author: GoBootAdminUI AutoCode 模板版本 1.0.0-beta.1
+ * @Author: GoAdminUI AutoCode 模板版本 1.0.0-beta.1
  * @Date: <%= createDate %>
  * @LastEditors: (最后更新作者)
  * @LastEditTime: (最后更新时间)

@@ -40,7 +40,7 @@
 			return {
 				json:
 `{
-	"name": "GoBootAdminUI",
+	"name": "GoAdminUI",
 	"menu": [
 		{
 			"title": "VUE 3",
