@@ -1,7 +1,7 @@
 <template>
 	<el-main>
 		<el-card shadow="never">
-			<sc-water-mark ref="wm" text="欢迎体验GoAdminUI" subtext="admin@email.com">
+			<sc-water-mark ref="wm" text="欢迎体验GoUI" subtext="admin@email.com">
 				<el-table :data="tableData" border stripe style="width: 100%">
 					<el-table-column prop="date" label="Date" width="180" />
 					<el-table-column prop="name" label="Name" width="180" />
