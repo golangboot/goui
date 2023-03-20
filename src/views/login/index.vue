@@ -126,7 +126,7 @@
 			this.$store.commit("clearViewTags")
 			this.$store.commit("clearKeepLive")
 			this.$store.commit("clearIframeList")
-			console.log('%c GoUI %c Gitee: https://gitee.com/goboot/goboot-admin-ui', 'background:#666;color:#fff;border-radius:3px;', '')
+			console.log('%c GoUI %c Gitee: https://github.com/golangboot/goui', 'background:#666;color:#fff;border-radius:3px;', '')
 		},
 		methods: {
 			configDark(){

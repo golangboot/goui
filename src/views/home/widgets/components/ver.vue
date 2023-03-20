@@ -31,10 +31,10 @@
 				this.ver = ver.data
 			},
 			golog(){
-				window.open("https://gitee.com/goboot/goboot-admin-ui/releases")
+				window.open("https://github.com/golangboot/goui/releases")
 			},
 			gogit(){
-				window.open("https://gitee.com/goboot/goboot-admin-ui")
+				window.open("https://github.com/golangboot/goui")
 			}
 		}
 	}
