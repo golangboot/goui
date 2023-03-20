@@ -8,7 +8,7 @@
 					<el-input v-model="form.title"></el-input>
 				</el-form-item>
 				<el-form-item label="表格" prop="list">
-					<sc-form-table v-model="form.list" :addTemplate="addTemplate" drag-sort placeholder="暂无数据">
+					<sc-form-table ref="table" v-model="form.list" :addTemplate="addTemplate" drag-sort placeholder="暂无数据">
 						<el-table-column prop="time" label="时间" width="180">
 							<template #default="scope">
 								<el-time-select v-model="scope.row.time"></el-time-select>
@@ -43,6 +43,10 @@
 				    <el-button @click="resetForm">重置</el-button>
 				</el-form-item>
 			</el-form>
+		</el-card>
+		<el-card shadow="never" header="方法" style="margin-top: 15px;">
+			<el-button type="primary" @click="pushRow">外部插入行</el-button>
+			<el-button type="primary" @click="deleteRow">外部删除第一行</el-button>
 		</el-card>
 	</el-main>
 </template>
@@ -108,6 +112,19 @@
 			},
 			resetForm(){
 				this.$refs.ruleForm.resetFields();
+			},
+			pushRow(){
+				const data = {
+					time: '18:00',
+					type: '1',
+					val: '0',
+					open: true,
+					checked: true
+				}
+				this.$refs.table.pushRow(data)
+			},
+			deleteRow(){
+				this.$refs.table.deleteRow(0)
 			}
 		}
 	}

@@ -1,10 +1,10 @@
 <!--
  * @Descripttion: 表单表格
- * @version: 1.1
+ * @version: 1.3
  * @Author: sakuya
  * @Date: 2023年2月9日12:32:26
  * @LastEditors: sakuya
- * @LastEditTime: 2023年2月9日12:32:26
+ * @LastEditTime: 2023年2月17日10:41:47
 -->
 
 <template>
@@ -12,12 +12,12 @@
 		<el-table :data="data" ref="table" border stripe>
 			<el-table-column type="index" width="50" fixed="left">
 				<template #header>
-					<el-button type="primary" icon="el-icon-plus" size="small" circle @click="rowAdd"></el-button>
+					<el-button v-if="!hideAdd" type="primary" icon="el-icon-plus" size="small" circle @click="rowAdd"></el-button>
 				</template>
 				<template #default="scope">
-					<div class="sc-form-table-handle">
+					<div :class="['sc-form-table-handle', {'sc-form-table-handle-delete':!hideDelete}]">
 						<span>{{scope.$index + 1}}</span>
-						<el-button type="danger" icon="el-icon-delete" size="small" plain circle @click="rowDel(scope.row, scope.$index)"></el-button>
+						<el-button v-if="!hideDelete" type="danger" icon="el-icon-delete" size="small" plain circle @click="rowDel(scope.row, scope.$index)"></el-button>
 					</div>
 				</template>
 			</el-table-column>
@@ -42,7 +42,9 @@
 			modelValue: { type: Array, default: () => [] },
 			addTemplate: { type: Object, default: () => {} },
 			placeholder: { type: String, default: "暂无数据" },
-			dragSort: { type: Boolean, default: false }
+			dragSort: { type: Boolean, default: false },
+			hideAdd: { type: Boolean, default: false },
+			hideDelete: { type: Boolean, default: false }
 		},
 		data(){
 			return {
@@ -96,6 +98,15 @@
 			},
 			rowDel(row, index){
 				this.data.splice(index, 1)
+			},
+			//插入行
+			pushRow(row){
+				const temp = row || JSON.parse(JSON.stringify(this.addTemplate))
+				this.data.push(temp)
+			},
+			//根据index删除
+			deleteRow(index){
+				this.data.splice(index, 1)
 			}
 		}
 	}
@@ -106,7 +117,7 @@
 	.sc-form-table .sc-form-table-handle {text-align: center;}
 	.sc-form-table .sc-form-table-handle span {display: inline-block;}
 	.sc-form-table .sc-form-table-handle button {display: none;}
-	.sc-form-table .hover-row .sc-form-table-handle span {display: none;}
-	.sc-form-table .hover-row .sc-form-table-handle button {display: inline-block;}
+	.sc-form-table .hover-row .sc-form-table-handle-delete span {display: none;}
+	.sc-form-table .hover-row .sc-form-table-handle-delete button {display: inline-block;}
 	.sc-form-table .move {text-align: center;font-size: 14px;margin-top: 3px;}
 </style>
