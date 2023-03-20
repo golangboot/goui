@@ -7,7 +7,8 @@
 		</div>
 		<div style="margin-top: 20px;">
 			<el-button type="primary" plain round @click="golog">更新日志</el-button>
-			<el-button type="primary" plain round @click="gogit">gitee</el-button>
+			<el-button type="primary" plain round @click="gogit">github</el-button>
+			<el-button type="primary" plain round @click="gogitee">gitee</el-button>
 		</div>
 	</el-card>
 </template>
@@ -35,6 +36,9 @@
 			},
 			gogit(){
 				window.open("https://github.com/golangboot/goui")
+			},
+			gogitee(){
+				window.open("https://gitee.com/goboot/goui")
 			}
 		}
 	}
